@@ -1,18 +1,28 @@
 // 과제
 // Q1
 function getCountOfChar(str) {
-  for (char of str) {
-    console.log(char);
+  let char = str[0];
+  let count = 0;
+  let result = "";
+  for (c of str) {
+    if (c === char) {
+      count += 1;
+    } else {
+      result = result + char + count;
+      char = c;
+      count = 1;
+    }
   }
+  return result + char + count;
 }
 const i = "aaabbbccc";
-getCountOfChar(i);
+console.log(getCountOfChar(i));
 
 const i2 = "aabbaa";
-const o2 = "a2b2a2";
+console.log(getCountOfChar(i2));
 
 const i3 = "abbbffd";
-const o3 = "a1b3f2d1";
+console.log(getCountOfChar(i3));
 
 // Q2
 // 1.함수 선언식
@@ -26,15 +36,15 @@ gugudan3();
 // 2.함수 표현식
 // 2.1 익명 함수(unnamed function )
 const gugudan4 = function () {
-  for (let i = 1; i < 10; i++) {
+  let i = 1;
+  while (i < 10) {
     console.log(`4*${i}=${4 * i}`);
+    i++;
   }
 };
 gugudan4();
 
 // 2.2 기명 함수(named function)
-// 101호 -> 김기수
-// 카운터
 const gugudan5 = function ddd() {
   for (let i = 1; i < 10; i++) {
     console.log(`5*${i}=${5 * i}`);
