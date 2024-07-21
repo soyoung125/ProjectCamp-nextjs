@@ -56,6 +56,6 @@ const students = [
 //8. 여학생들 중 나이가 가장 어린 학생 찾기
 {
   const females = students.filter((s) => s.gender === "female");
-  const youngest = females.sort((a, b) => a.age - b.age);
-  console.log(youngest[0]);
+  const youngest = females.sort((a, b) => a.age - b.age)[0];
+  console.log(youngest);
 }

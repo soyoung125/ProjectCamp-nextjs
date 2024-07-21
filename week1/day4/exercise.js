@@ -5,8 +5,7 @@
 // ex) 32125 -> 52123
 //     15231 -> 13251
 function reverse_to_number(number) {
-  const str = number.toString().split("");
-  return str.reverse().join("");
+  return Number(number.toString().split("").reverse().join(""));
 }
 
 let a = reverse_to_number(32125);
@@ -22,9 +21,11 @@ console.log(b); // 15231
 */
 
 function findLongStr(str) {
-  const wordArr = str.split(" ");
-
-  return wordArr.reduce((acc, curr) => (acc.length < curr.length ? curr : acc));
+  // return str.split(" ").reduce((acc, curr) => (acc.length < curr.length ? curr : acc));
+  return str
+    .split(" ")
+    .sort((a, b) => b.length - a.length)
+    .shift();
 }
 
 let result = findLongStr("we are the champion");

@@ -28,6 +28,16 @@ function task4() {
   });
 }
 
+task1(() => {
+  task2(() => {
+    task3(() => {
+      task4(() => {
+        console.log("모든 작업 끝");
+      });
+    });
+  });
+});
+
 task1() //
   .then(() => task2())
   .then(() => task3())
