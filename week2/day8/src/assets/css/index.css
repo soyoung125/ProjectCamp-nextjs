@@ -1,0 +1,7 @@
+@import "./fonts.css";
+@import "./tailwind.css";
+@import "./style.css";
+
+.bg-img {
+  background-image: url("../images/water-2559064_1280.jpg");
+}
