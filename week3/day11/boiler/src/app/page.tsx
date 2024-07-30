@@ -28,11 +28,10 @@ export default function Home({
             <li>
               <Link
                 href="?city=seoul"
-                className={
-                  searchParams.city === "seoul" || !searchParams.city
-                    ? "font-bold"
-                    : ""
-                }
+                className={`${
+                  (searchParams.city === "seoul" || !searchParams.city) &&
+                  "font-bold"
+                }`}
               >
                 Seoul
               </Link>
@@ -40,7 +39,7 @@ export default function Home({
             <li>
               <Link
                 href="?city=london"
-                className={searchParams.city === "london" ? "font-bold" : ""}
+                className={`${searchParams.city === "london" && "font-bold"}`}
               >
                 London
               </Link>
@@ -48,7 +47,7 @@ export default function Home({
             <li>
               <Link
                 href="?city=paris"
-                className={searchParams.city === "paris" ? "font-bold" : ""}
+                className={`${searchParams.city === "paris" && "font-bold"}`}
               >
                 Paris
               </Link>
@@ -56,7 +55,7 @@ export default function Home({
             <li>
               <Link
                 href="?city=newyork"
-                className={searchParams.city === "newyork" ? "font-bold" : ""}
+                className={`${searchParams.city === "newyork" && "font-bold"}`}
               >
                 NewYork
               </Link>

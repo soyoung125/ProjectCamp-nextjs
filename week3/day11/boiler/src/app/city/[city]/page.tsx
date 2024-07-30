@@ -11,6 +11,7 @@ export default function CityPage({
 }: {
   params: { [key: string]: string };
 }) {
+  const { city } = params;
   return (
     <>
       <div className="flex justify-center items-center min-h-screen">
@@ -20,7 +21,7 @@ export default function CityPage({
             <li>
               <Link
                 href="/city/seoul"
-                className={params.city === "seoul" ? "font-bold" : ""}
+                className={`${city === "seoul" && "font-bold"}`}
               >
                 Seoul
               </Link>
@@ -28,7 +29,7 @@ export default function CityPage({
             <li>
               <Link
                 href="/city/london"
-                className={params.city === "london" ? "font-bold" : ""}
+                className={`${city === "london" && "font-bold"}`}
               >
                 London
               </Link>
@@ -36,7 +37,7 @@ export default function CityPage({
             <li>
               <Link
                 href="/city/paris"
-                className={params.city === "paris" ? "font-bold" : ""}
+                className={`${city === "paris" && "font-bold"}`}
               >
                 Paris
               </Link>
@@ -44,17 +45,17 @@ export default function CityPage({
             <li>
               <Link
                 href="/city/newyork"
-                className={params.city === "newyork" ? "font-bold" : ""}
+                className={`${city === "newyork" && "font-bold"}`}
               >
                 NewYork
               </Link>
             </li>
           </ul>
           <div>
-            {params.city === "seoul" && <Image src={seoul} alt={"서울"} />}
-            {params.city === "london" && <Image src={london} alt={"런던"} />}
-            {params.city === "paris" && <Image src={paris} alt={"파리"} />}
-            {params.city === "newyork" && (
+            {city === "seoul" && <Image src={seoul} alt={"서울"} />}
+            {city === "london" && <Image src={london} alt={"런던"} />}
+            {city === "paris" && <Image src={paris} alt={"파리"} />}
+            {city === "newyork" && (
               <Image src={newyork} alt={"뉴욕"} priority={true} />
             )}
           </div>
