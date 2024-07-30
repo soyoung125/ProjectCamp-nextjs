@@ -1,6 +1,9 @@
 import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Image from "next/image";
+import travel from "/public/images/travel.png";
+import NavLink from "@/components/NavLink";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="flex flex-col items-center gap-4  max-w-[500px]">
+            <Image src={travel} alt={"로고"} width={80} />
+            <NavLink />
+            <div>{children}</div>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
