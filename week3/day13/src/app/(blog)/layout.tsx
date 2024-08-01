@@ -28,9 +28,11 @@ export default async function BlogLayout({
             </Link>
             <nav>
               <ul className="flex gap-5 text-lg text-[#605C59]">
-                <li>
-                  <Link href="/write">Write</Link>
-                </li>
+                {session && (
+                  <li>
+                    <Link href="/write">Write</Link>
+                  </li>
+                )}
                 <li>
                   <Link href="/about">About</Link>
                 </li>
