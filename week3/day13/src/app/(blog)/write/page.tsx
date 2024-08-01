@@ -1,12 +1,12 @@
 "use client";
 
 import { TPost } from "@/types/post";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function WritePAge() {
-  const router = useRouter;
+  const router = useRouter();
   const [text, setText] = useState<TPost>({
     id: uuidv4(),
     title: "",
@@ -46,7 +46,7 @@ export default function WritePAge() {
     e.preventDefault();
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}/api/blog`,
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/posts`,
       {
         method: "POST",
         headers: {
@@ -58,6 +58,10 @@ export default function WritePAge() {
 
     const data = await response.json();
     console.log(data);
+    if (data.status) {
+      alert(data.message);
+      router.push("/");
+    }
   };
 
   return (
