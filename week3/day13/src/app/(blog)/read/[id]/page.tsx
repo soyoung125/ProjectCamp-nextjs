@@ -10,7 +10,10 @@ export default async function ReadPage({ params }: { params: { id: string } }) {
   ).json();
   const otherPosts: TPost[] = await (
     await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}/api/mposts/${params.id}?type=ne`
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/mposts/${params.id}?type=ne`,
+      {
+        cache: "no-cache",
+      }
     )
   ).json();
 
