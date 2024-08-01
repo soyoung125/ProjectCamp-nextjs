@@ -46,7 +46,7 @@ export default function WritePAge() {
     e.preventDefault();
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}/api/posts`,
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/mposts`,
       {
         method: "POST",
         headers: {
@@ -57,7 +57,7 @@ export default function WritePAge() {
     );
 
     const data = await response.json();
-    console.log(data);
+
     if (data.status) {
       alert(data.message);
       router.push("/");

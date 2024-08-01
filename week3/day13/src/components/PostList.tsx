@@ -4,7 +4,7 @@ import PostListItem from "./PostListItem";
 export default async function PostList({ query }: { query: string }) {
   const posts: TPost[] = await (
     await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}/api/posts${
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/mposts${
         query && "?query=" + query
       }`,
       {
