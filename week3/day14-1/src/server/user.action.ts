@@ -53,3 +53,7 @@ export async function register(
 export async function logout() {
   await signOut();
 }
+
+export async function github() {
+  await signIn("github");
+}

@@ -5,11 +5,13 @@ import { z } from "zod";
 import { connectToDB } from "./libs/db";
 import { User } from "./libs/schemas/users";
 import bcrypt from "bcrypt";
+import github from "next-auth/providers/github";
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
+      // 일반 인증
       async authorize(credentials) {
         const parsedCredentials = z
           .object({ email: z.string().email(), password: z.string().min(2) })
@@ -29,6 +31,10 @@ export const { auth, signIn, signOut } = NextAuth({
         }
         return null;
       },
+    }),
+    github({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
 });

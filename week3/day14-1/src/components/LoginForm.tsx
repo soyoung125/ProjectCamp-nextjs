@@ -1,5 +1,5 @@
 "use client";
-import { login } from "@/server/user.action";
+import { github, login } from "@/server/user.action";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
@@ -9,6 +9,7 @@ export default function LoginForm() {
     message: "",
     status: false,
   });
+
   useEffect(() => {
     if (state.message && !state.status) {
       alert(state.message);
@@ -17,6 +18,7 @@ export default function LoginForm() {
       router.push("/dashboard");
     }
   }, [state]);
+
   return (
     <>
       <h1>LoginForm</h1>
@@ -24,6 +26,9 @@ export default function LoginForm() {
         <input type="text" name="email" /> <br />
         <input type="password" name="password" /> <br />
         <button>로그인</button>
+      </form>
+      <form action={github}>
+        <button>깃허브 로그인</button>
       </form>
     </>
   );
