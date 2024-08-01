@@ -48,7 +48,7 @@ export default async function ReadPage({ params }: { params: { id: string } }) {
           {otherPosts &&
             otherPosts.map((post) => (
               <li>
-                <Link href={`/read/${post.id}`}>
+                <Link href={`/read/${post._id}`}>
                   <div className="flex gap-[34px]">
                     <Image
                       src={post.thumbnail}
