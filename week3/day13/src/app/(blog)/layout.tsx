@@ -1,17 +1,20 @@
 import Link from "next/link";
 import { Merriweather } from "next/font/google";
 import { logout } from "@/server/user.action";
+import { getSession } from "@/libs/getSession";
 
 const merriweather = Merriweather({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
 
-export default function BlogLayout({
+export default async function BlogLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession();
+
   return (
     <>
       <article
@@ -34,11 +37,18 @@ export default function BlogLayout({
                 <li>
                   <Link href="/contact">Contact</Link>
                 </li>
-                <li>
-                  <form action={logout}>
-                    <button>Logout</button>
-                  </form>
-                </li>
+                {session && (
+                  <li>
+                    <form action={logout}>
+                      <button>Logout</button>
+                    </form>
+                  </li>
+                )}
+                {!session && (
+                  <li>
+                    <Link href="/login">Login</Link>
+                  </li>
+                )}
               </ul>
             </nav>
           </header>
