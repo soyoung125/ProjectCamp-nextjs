@@ -10,7 +10,9 @@
     "all": "concurrently \"json-server --watch src/db/db.json --port 5500\" \"next dev\""
   },
   "dependencies": {
+    "all": "^0.0.0",
     "concurrently": "^8.2.2",
+    "date-fns": "^3.6.0",
     "json-server": "^0.17.0",
     "next": "14.2.5",
     "react": "^18",

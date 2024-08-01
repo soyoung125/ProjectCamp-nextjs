@@ -1,3 +1,19 @@
+export async function GET(request: Request) {
+  try {
+    const res = await fetch("http://localhost:5500/posts");
+    const data = await res.json();
+    return Response.json(data);
+  } catch (e) {
+    if (e instanceof Error) {
+      return Response.json({ message: e.message, status: false });
+    }
+    return Response.json({
+      message: "알 수 없는 오류가 발생했습니다.",
+      status: false,
+    });
+  }
+}
+
 // http://localhost:3000/api/blog (POST)
 export async function POST(request: Request) {
   const body = await request.json();

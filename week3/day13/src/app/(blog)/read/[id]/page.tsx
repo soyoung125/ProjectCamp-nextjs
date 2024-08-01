@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { dummyImage, dummyImage3 } from "../../../../../public/blog/assets";
+import { dummyImage, dummyAvartar } from "../../../../../public/blog/assets";
 
 export default function ReadPage() {
   return (
@@ -21,7 +21,7 @@ export default function ReadPage() {
           className="object-cover w-full max-h-[278px] rounded-md"
         />
         <div className="mt-4 flex items-center gap-[14px]">
-          <Image src={dummyImage3} alt="" className="rounded-s-full" />
+          <Image src={dummyAvartar} alt="" className="rounded-s-full" />
           <strong className="text-sm">George Costanazv</strong>
         </div>
       </section>
