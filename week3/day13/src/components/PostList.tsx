@@ -1,11 +1,16 @@
 import { TPost } from "@/types/post";
 import PostListItem from "./PostListItem";
 
-export default async function PostList() {
+export default async function PostList({ query }: { query: string }) {
   const posts: TPost[] = await (
-    await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts`, {
-      cache: "no-cache",
-    })
+    await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/posts${
+        query && "?query=" + query
+      }`,
+      {
+        cache: "no-cache",
+      }
+    )
   ).json();
 
   return (

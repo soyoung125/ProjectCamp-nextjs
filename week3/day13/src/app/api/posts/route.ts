@@ -1,6 +1,12 @@
+// http://localhost:3000/api/posts?qyery=.. (GET)
 export async function GET(request: Request) {
   try {
-    const res = await fetch("http://localhost:5500/posts");
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("query");
+
+    const res = await fetch(
+      `http://localhost:5500/posts${query ? "?title_like=" + query : ""}`
+    );
     const data = await res.json();
     return Response.json(data);
   } catch (e) {
@@ -14,7 +20,7 @@ export async function GET(request: Request) {
   }
 }
 
-// http://localhost:3000/api/blog (POST)
+// http://localhost:3000/api/posts (POST)
 export async function POST(request: Request) {
   const body = await request.json();
 

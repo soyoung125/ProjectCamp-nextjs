@@ -1,7 +1,12 @@
 import PostList from "@/components/PostList";
 import Search from "@/components/Search";
 
-export default function page() {
+export default function page({
+  searchParams,
+}: {
+  searchParams: { query: string };
+}) {
+  const query = searchParams.query || "";
   return (
     <>
       {/* 메인 영역 */}
@@ -18,7 +23,7 @@ export default function page() {
         {/* 검색 영역 */}
         <Search />
         {/* 포스트 리스트 */}
-        <PostList />
+        <PostList query={query} />
       </main>
     </>
   );
