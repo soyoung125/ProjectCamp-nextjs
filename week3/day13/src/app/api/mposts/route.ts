@@ -1,5 +1,5 @@
 import { connectToDB } from "@/libs/db";
-import { Post } from "@/libs/schema/posts";
+import { Post } from "@/libs/schemas/posts";
 
 // http://localhost:3000/api/posts?qyery=.. (GET)
 export async function GET(request: Request) {

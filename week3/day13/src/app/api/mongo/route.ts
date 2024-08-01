@@ -1,5 +1,5 @@
 import { connectToDB } from "@/libs/db";
-import { Product } from "@/libs/schema/product";
+import { Product } from "@/libs/schemas/product";
 
 export async function GET(request: Request) {
   connectToDB(); // db 연결/ 항상 먼저 선언해야 함.

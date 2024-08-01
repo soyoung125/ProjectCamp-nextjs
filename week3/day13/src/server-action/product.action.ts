@@ -1,6 +1,6 @@
 "use server"; // 반드시 붙여줘야 함
 import { connectToDB } from "@/libs/db";
-import { Product } from "@/libs/schema/product";
+import { Product } from "@/libs/schemas/product";
 
 export async function addProduct(
   state: {
