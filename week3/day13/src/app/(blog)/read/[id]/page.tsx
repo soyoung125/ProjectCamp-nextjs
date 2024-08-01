@@ -1,144 +1,72 @@
 import Image from "next/image";
-import { dummyImage, dummyAvartar } from "../../../../../public/blog/assets";
+import { dummyAvartar } from "../../../../../public/blog/assets";
+import { TPost } from "@/types/post";
+import { format } from "date-fns";
+import Link from "next/link";
 
-export default function ReadPage() {
+export default async function ReadPage({ params }: { params: { id: string } }) {
+  const post: TPost = await (
+    await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts/${params.id}`)
+  ).json();
+  const otherPosts: TPost[] = await (
+    await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/posts/${params.id}?type=ne`
+    )
+  ).json();
+
   return (
     <>
       {/* 이미지 */}
       <section className="max-w-[800px] mx-auto">
         <strong className="w-[73px] h-[26px] bg-[#283A61] text-white text-sm flex items-center justify-center rounded-[3px] mt-[21px] mb-[8px]">
-          Next.JS
+          {post.category}
         </strong>
-        <h3 className="text-[46px] font-bold">
-          What Traveling Greece For 2 Weeks Taught Me About Life
-        </h3>
+        <h3 className="text-[46px] font-bold">{post.title}</h3>
         <p className="text-sm text-[#515151] mb-[18px]">
-          Aug 1, 2021 • 7 min read
+          {format(post.datetime, "yyyy.MM.dd")} • 7 min read
         </p>
         <Image
-          src={dummyImage}
-          alt="dummy"
+          src={post.thumbnail}
+          width={800}
+          height={278}
+          alt={post.title}
           className="object-cover w-full max-h-[278px] rounded-md"
         />
         <div className="mt-4 flex items-center gap-[14px]">
-          <Image src={dummyAvartar} alt="" className="rounded-s-full" />
+          <Image src={dummyAvartar} alt="profile" className="rounded-s-full" />
           <strong className="text-sm">George Costanazv</strong>
         </div>
       </section>
       {/* 본문 */}
       <section className="max-w-[800px] mx-auto text-xl text-[#434343] mt-5 [&>p]:mb-10 ">
-        <p>
-          Vel leo proin facilisis metus sit ut cursus sagittis. Diam donec mus
-          malesuada et ac vulputate. Aenean lacinia suspendisse et mattis
-          adipiscing id dictum commodo nunc. Feugiat lorem cras ut cras enim
-          neque, elit, facilisi habitasse. Facilisis faucibus nunc congue urna
-          diam. Vitae, diam justo, massa, elit. In et nibh ut in diam tellus at
-          tellus diam.
-        </p>
-        <p>
-          Vel leo proin facilisis metus sit ut cursus sagittis. Diam donec mus
-          malesuada et ac vulputate. Aenean lacinia suspendisse et mattis
-          adipiscing id dictum commodo nunc. Feugiat lorem cras ut cras enim
-          neque, elit, facilisi habitasse. Facilisis faucibus nunc congue urna
-          diam. Vitae, diam justo, massa, elit. In et nibh ut in diam tellus at
-          tellus diam.
-        </p>
-        <p>
-          Vel leo proin facilisis metus sit ut cursus sagittis. Diam donec mus
-          malesuada et ac vulputate. Aenean lacinia suspendisse et mattis
-          adipiscing id dictum commodo nunc. Feugiat lorem cras ut cras enim
-          neque, elit, facilisi habitasse. Facilisis faucibus nunc congue urna
-          diam. Vitae, diam justo, massa, elit. In et nibh ut in diam tellus at
-          tellus diam.
-        </p>
-        <p>
-          Vel leo proin facilisis metus sit ut cursus sagittis. Diam donec mus
-          malesuada et ac vulputate. Aenean lacinia suspendisse et mattis
-          adipiscing id dictum commodo nunc. Feugiat lorem cras ut cras enim
-          neque, elit, facilisi habitasse. Facilisis faucibus nunc congue urna
-          diam. Vitae, diam justo, massa, elit. In et nibh ut in diam tellus at
-          tellus diam.
-        </p>
+        <div className="mb-20">{post.description}</div>
       </section>
       {/* 관련 게시물 */}
       <section className="max-w-[800px] mx-auto">
         <h3 className="text-[36px] font-bold mb-[30px]">Recommand Reading</h3>
         <ul className="[&>li]:mb-[30px]">
-          <li>
-            <div className="flex gap-[34px]">
-              <Image
-                src={dummyImage}
-                alt=""
-                className="rounded-md max-w-[250px]"
-              />
-              <div>
-                <h4 className="text-2xl font-bold mb-2">
-                  Why you don’t need more than 3 pieces of clothing
-                </h4>
-                <p className="text-lg text-[#4b4b4b] line-clamp-3">
-                  Et vitae, mollis euismod lobortis blandit amet sed amet. Amet
-                  ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.
-                </p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="flex gap-[34px]">
-              <Image
-                src={dummyImage}
-                alt=""
-                className="rounded-md max-w-[250px]"
-              />
-              <div>
-                <h4 className="text-2xl font-bold mb-2">
-                  Why you don’t need more than 3 pieces of clothing
-                </h4>
-                <p className="text-lg text-[#4b4b4b] line-clamp-3">
-                  Et vitae, mollis euismod lobortis blandit amet sed amet. Amet
-                  ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.
-                </p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="flex gap-[34px]">
-              <Image
-                src={dummyImage}
-                alt=""
-                className="rounded-md max-w-[250px]"
-              />
-              <div>
-                <h4 className="text-2xl font-bold mb-2">
-                  Why you don’t need more than 3 pieces of clothing
-                </h4>
-                <p className="text-lg text-[#4b4b4b] line-clamp-3">
-                  Et vitae, mollis euismod lobortis blandit amet sed amet. Amet
-                  ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.Et vitae, mollis euismod lobortis blandit amet sed amet.
-                  Amet ut amet nisl tortor arcu non id nulla mauris neque nisl
-                  magna.
-                </p>
-              </div>
-            </div>
-          </li>
+          {otherPosts &&
+            otherPosts.map((post) => (
+              <li>
+                <Link href={`/read/${post.id}`}>
+                  <div className="flex gap-[34px]">
+                    <Image
+                      src={post.thumbnail}
+                      width={250}
+                      height={156}
+                      alt={post.title}
+                      className="rounded-md max-w-[250px]"
+                    />
+                    <div>
+                      <h4 className="text-2xl font-bold mb-2">{post.title}</h4>
+                      <p className="text-lg text-[#4b4b4b] line-clamp-3">
+                        {post.description}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
         </ul>
       </section>
     </>

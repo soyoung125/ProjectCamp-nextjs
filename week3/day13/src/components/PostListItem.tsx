@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { dummyImage, dummyAvartar } from "../../public/blog/assets";
+import { dummyAvartar } from "../../public/blog/assets";
 import Image from "next/image";
 import { TPost } from "@/types/post";
 import { format } from "date-fns";
