@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Merriweather } from "next/font/google";
+import { logout } from "@/server/user.action";
 
 const merriweather = Merriweather({
   weight: ["400", "700"],
@@ -32,6 +33,11 @@ export default function BlogLayout({
                 </li>
                 <li>
                   <Link href="/contact">Contact</Link>
+                </li>
+                <li>
+                  <form action={logout}>
+                    <button>Logout</button>
+                  </form>
                 </li>
               </ul>
             </nav>

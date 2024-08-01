@@ -3,9 +3,9 @@ import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import { connectToDB } from "./libs/db";
-import { User } from "./libs/schemas/users";
 import bcrypt from "bcrypt";
 import github from "next-auth/providers/github";
+import { User } from "./libs/schemas/users";
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,

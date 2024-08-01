@@ -23,8 +23,14 @@ export default function LoginForm() {
     <>
       <h1>LoginForm</h1>
       <form action={formAction}>
-        <input type="text" name="email" /> <br />
-        <input type="password" name="password" /> <br />
+        <input className="border border-slate-500" type="text" name="email" />{" "}
+        <br />
+        <input
+          className="border border-slate-500"
+          type="password"
+          name="password"
+        />
+        <br />
         <button>로그인</button>
       </form>
       <form action={github}>
