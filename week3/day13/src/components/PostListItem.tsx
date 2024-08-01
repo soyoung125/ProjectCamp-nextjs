@@ -10,11 +10,11 @@ export default function PostListItem({
   datetime,
   title,
   description,
-  id,
+  _id,
 }: TPost) {
   return (
     <>
-      <Link href={`/read/${id}`}>
+      <Link href={`/read/${_id}`}>
         <article>
           <Image
             src={thumbnail}

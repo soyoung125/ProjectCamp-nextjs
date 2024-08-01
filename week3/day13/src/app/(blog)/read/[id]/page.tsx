@@ -6,11 +6,11 @@ import Link from "next/link";
 
 export default async function ReadPage({ params }: { params: { id: string } }) {
   const post: TPost = await (
-    await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/posts/${params.id}`)
+    await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/mposts/${params.id}`)
   ).json();
   const otherPosts: TPost[] = await (
     await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_URL}/api/posts/${params.id}?type=ne`
+      `${process.env.NEXT_PUBLIC_HOST_URL}/api/mposts/${params.id}?type=ne`
     )
   ).json();
 

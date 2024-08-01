@@ -1,16 +1,21 @@
+import { connectToDB } from "@/libs/db";
+import { Post } from "@/libs/schema/posts";
+
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
+    connectToDB();
+
     const { searchParams } = new URL(request.url);
     const type = searchParams.get("type");
-    const path =
-      type === "ne" ? `posts?id_ne=${params.id}` : `posts/${params.id}`;
+    const posts =
+      type === "ne"
+        ? await Post.find({ _id: { $ne: params.id } })
+        : await Post.findById(params.id);
 
-    const res = await fetch(`http://localhost:5500/${path}`); // json-server의 규칙
-    const data = await res.json();
-    return Response.json(data);
+    return Response.json(posts);
   } catch (error) {
     if (error instanceof Error) {
       return Response.json({ message: error.message, status: false });

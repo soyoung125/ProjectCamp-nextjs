@@ -1,4 +1,5 @@
 export type TPost = {
+  _id?: string;
   id: string;
   title: string;
   category: string;
