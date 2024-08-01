@@ -10,6 +10,8 @@ export default function PostListItem({
   datetime,
   title,
   description,
+  name,
+  profile,
   _id,
 }: TPost) {
   return (
@@ -33,8 +35,14 @@ export default function PostListItem({
             </p>
             <p className="mt-[15px] text-[#434343]">{description}</p>
             <div className="mt-4 flex items-center gap-[14px]">
-              <Image src={dummyAvartar} alt="" className="rounded-s-full" />
-              <strong className="text-sm">George Costanazv</strong>
+              <Image
+                src={profile}
+                width={42}
+                height={42}
+                alt="prifile image"
+                className="rounded-s-full"
+              />
+              <strong className="text-sm">{name}</strong>
             </div>
           </div>
         </article>

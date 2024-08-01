@@ -36,8 +36,14 @@ export default async function ReadPage({ params }: { params: { id: string } }) {
           className="object-cover w-full max-h-[278px] rounded-md"
         />
         <div className="mt-4 flex items-center gap-[14px]">
-          <Image src={dummyAvartar} alt="profile" className="rounded-s-full" />
-          <strong className="text-sm">George Costanazv</strong>
+          <Image
+            src={post.profile}
+            width={42}
+            height={42}
+            alt="profile"
+            className="rounded-s-full"
+          />
+          <strong className="text-sm">{post.name}</strong>
         </div>
       </section>
       {/* 본문 */}

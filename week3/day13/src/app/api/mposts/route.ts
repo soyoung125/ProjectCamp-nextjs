@@ -1,4 +1,5 @@
 import { connectToDB } from "@/libs/db";
+import { getSession } from "@/libs/getSession";
 import { Post } from "@/libs/schemas/posts";
 
 // http://localhost:3000/api/posts?qyery=.. (GET)
@@ -27,12 +28,17 @@ export async function GET(request: Request) {
 // http://localhost:3000/api/posts (POST)
 export async function POST(request: Request) {
   const body = await request.json();
+  const session: any = await getSession();
 
   // store at db
   try {
     connectToDB();
 
-    new Post(body).save();
+    const userInfo = session?.user
+      ? { ...body, name: session.user.name, profile: session.user.image }
+      : body;
+
+    new Post({ ...userInfo }).save();
 
     return Response.json({ message: "등록에 성공했습니다.", status: true });
   } catch (e) {

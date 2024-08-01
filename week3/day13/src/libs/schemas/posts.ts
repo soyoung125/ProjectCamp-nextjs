@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
+  profile: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
   title: {
     type: String,
     required: true,

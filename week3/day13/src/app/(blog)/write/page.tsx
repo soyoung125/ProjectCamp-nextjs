@@ -14,6 +14,8 @@ export default function WritePAge() {
     description: "",
     thumbnail: "",
     datetime: new Date(),
+    name: "",
+    profile: "",
   });
 
   const handleChange = (

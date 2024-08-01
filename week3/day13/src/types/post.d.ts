@@ -6,4 +6,6 @@ export type TPost = {
   description: string;
   thumbnail: string;
   datetime: Date;
+  name: string;
+  profile: string;
 };
